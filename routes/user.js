@@ -4,7 +4,7 @@ const zod = require("zod");
 const app = express();
 const {User,Account}=require("../db")
 const {JWT_SECRET}=require('../config');
-const { authmiddleware } = require("../middleware");
+
 const router = express.Router();
 
 const schema = zod.object({

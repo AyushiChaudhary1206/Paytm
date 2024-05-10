@@ -3,14 +3,14 @@
 	"public": true,
 	"builds": [
 		{
-			"src": "src/server.js",
+			"src": "index.js",
 			"use": "@vercel/node"
 		}
 	],
 	"rewrites": [
 		{
 			"source": "/(.*)",
-			"destination": "/src/server.js"
+			"destination": "index.js"
 		}
 	],
 	"headers": [
