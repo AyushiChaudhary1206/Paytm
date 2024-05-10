@@ -3,7 +3,10 @@ const mainrouter=require("./routes/index")
 const app=express();
 const cors=require("cors");
 app.use(
-    cors()
+    cors({
+        origin:"http://localhost:3000",
+        methods:["GET","POST","PUT","PATCH","DELETE","OPTIONS"]
+    })
 );
 app.use(express.json());
 
