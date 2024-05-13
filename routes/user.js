@@ -4,7 +4,7 @@ const zod = require("zod");
 const app = express();
 const {User,Account}=require("../db")
 const {JWT_SECRET}=require('../config');
-
+const { authmiddleware } = require("../middleware");
 const router = express.Router();
 
 const schema = zod.object({
@@ -85,6 +85,35 @@ return
 res.status(411).json({
   msg:"error logging in"
 })
+})
+
+
+const update=zod.object({
+  password:zod.string().optional(),
+  firstname:zod.string().optional(),
+  lastname:zod.string().optional(),
+})
+router.put("/",authmiddleware,async(req,res)=>{
+  const {success}=update.safeParse(req.body);
+  if(!success){
+    res.status(411).json({
+      msg:"error"
+    })
+  }
+
+  await User.updateOne(
+    {
+    _id:req.userid
+   },{
+  $set:req.body
+   }
+   )
+ 
+  res.json({
+
+    msg:"user updated successfully"
+  })
+
 })
 
 
