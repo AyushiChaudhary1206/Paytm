@@ -9,4 +9,4 @@ app.use(express.json());
 
 app.use("/api/v1",mainrouter)
 
-app.listen(`${PORT}`)
+app.listen(`${port}`)
